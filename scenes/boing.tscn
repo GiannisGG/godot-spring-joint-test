@@ -1,0 +1,199 @@
+[gd_scene load_steps=7 format=3 uid="uid://du2reu3vx041"]
+
+[ext_resource type="Script" path="res://scripts/boing.gd" id="1_k56ix"]
+[ext_resource type="Texture2D" uid="uid://wa6ny2ok5duq" path="res://icon.svg" id="2_du4xo"]
+[ext_resource type="Theme" uid="uid://dlbyrffj8inbv" path="res://resources/my.theme" id="3_koes3"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="3_ud2r8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3a7a"]
+size = Vector2(128, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0000"]
+size = Vector2(128, 128)
+
+[node name="Boing" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_koes3")
+script = ExtResource("1_k56ix")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -118.0
+offset_top = 19.0
+offset_right = 118.0
+offset_bottom = 165.0
+grow_horizontal = 2
+
+[node name="Labels" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -103.5
+offset_top = 27.0
+offset_right = 103.5
+offset_bottom = 137.0
+grow_horizontal = 2
+
+[node name="Stats" type="VBoxContainer" parent="Labels"]
+layout_mode = 2
+
+[node name="MassStat" type="Label" parent="Labels/Stats"]
+layout_mode = 2
+text = "Mass:"
+
+[node name="LengthStat" type="Label" parent="Labels/Stats"]
+layout_mode = 2
+text = "Length:"
+
+[node name="RestLengthStat" type="Label" parent="Labels/Stats"]
+layout_mode = 2
+text = "Rest Length:"
+
+[node name="StiffnessStat" type="Label" parent="Labels/Stats"]
+layout_mode = 2
+text = "Stiffness:"
+
+[node name="DampingStat" type="Label" parent="Labels/Stats"]
+layout_mode = 2
+text = "Damping:"
+
+[node name="BiasStat" type="Label" parent="Labels/Stats"]
+layout_mode = 2
+text = "Bias:"
+
+[node name="Values" type="VBoxContainer" parent="Labels"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MassVal" type="Label" parent="Labels/Values"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="LengthVal" type="Label" parent="Labels/Values"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="RestLengthVal" type="Label" parent="Labels/Values"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="StiffnessVal" type="Label" parent="Labels/Values"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="DampingVal" type="Label" parent="Labels/Values"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="BiasVal" type="Label" parent="Labels/Values"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="Sliders" type="VBoxContainer" parent="Labels"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MassVal" type="HSlider" parent="Labels/Sliders"]
+layout_mode = 2
+size_flags_vertical = 2
+max_value = 20.0
+
+[node name="LengthVal" type="HSlider" parent="Labels/Sliders"]
+layout_mode = 2
+size_flags_vertical = 2
+max_value = 300.0
+
+[node name="RestLengthVal" type="HSlider" parent="Labels/Sliders"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="StiffnessVal" type="HSlider" parent="Labels/Sliders"]
+layout_mode = 2
+size_flags_vertical = 2
+min_value = 0.1
+max_value = 64.0
+step = 0.1
+value = 1.0
+
+[node name="DampingVal" type="HSlider" parent="Labels/Sliders"]
+layout_mode = 2
+size_flags_vertical = 2
+min_value = 0.01
+max_value = 16.0
+step = 0.01
+value = 0.01
+
+[node name="BiasVal" type="HSlider" parent="Labels/Sliders"]
+layout_mode = 2
+size_flags_vertical = 2
+max_value = 0.9
+step = 0.01
+
+[node name="SpringSystem" type="Control" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_top = 166.0
+offset_right = 64.0
+offset_bottom = 294.0
+grow_horizontal = 2
+
+[node name="Line2D" type="Line2D" parent="SpringSystem"]
+points = PackedVector2Array(64, 17, 64, 37)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="SpringSystem"]
+position = Vector2(64, 17)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="SpringSystem/StaticBody2D"]
+scale = Vector2(1, 0.265625)
+texture = ExtResource("2_du4xo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpringSystem/StaticBody2D"]
+shape = SubResource("RectangleShape2D_b3a7a")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="SpringSystem"]
+position = Vector2(64, 232)
+mass = 4.0
+script = ExtResource("3_ud2r8")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="SpringSystem/RigidBody2D"]
+texture = ExtResource("2_du4xo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpringSystem/RigidBody2D"]
+shape = SubResource("RectangleShape2D_r0000")
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="SpringSystem"]
+position = Vector2(64, 32)
+node_a = NodePath("../StaticBody2D")
+node_b = NodePath("../RigidBody2D")
+length = 200.0
+rest_length = 50.0
+
+[connection signal="value_changed" from="Labels/Sliders/MassVal" to="." method="_on_mass_val_value_changed"]
+[connection signal="value_changed" from="Labels/Sliders/LengthVal" to="." method="_on_length_val_value_changed"]
+[connection signal="value_changed" from="Labels/Sliders/RestLengthVal" to="." method="_on_rest_length_val_value_changed"]
+[connection signal="value_changed" from="Labels/Sliders/StiffnessVal" to="." method="_on_stiffness_val_value_changed"]
+[connection signal="value_changed" from="Labels/Sliders/DampingVal" to="." method="_on_damping_val_value_changed"]
+[connection signal="value_changed" from="Labels/Sliders/BiasVal" to="." method="_on_bias_val_value_changed"]

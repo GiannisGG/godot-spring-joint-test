@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://ny23uj1cvoh8"]
+
+[ext_resource type="PackedScene" uid="uid://du2reu3vx041" path="res://scenes/boing.tscn" id="1_8xac5"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Stage" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Boing1" parent="Stage" instance=ExtResource("1_8xac5")]
+layout_mode = 2
+
+[node name="Boing2" parent="Stage" instance=ExtResource("1_8xac5")]
+layout_mode = 2
+
+[node name="Boing3" parent="Stage" instance=ExtResource("1_8xac5")]
+layout_mode = 2
+
+[node name="Boing4" parent="Stage" instance=ExtResource("1_8xac5")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.27451)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -288.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "PUSH DOWN ARROW
+FOR DOWNWARD IMPULSE"
+horizontal_alignment = 1
